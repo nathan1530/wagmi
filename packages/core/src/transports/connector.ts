@@ -23,6 +23,7 @@ export type ConnectorTransportConfig = {
   retryCount?: TransportConfig['retryCount'] | undefined
   /** The base delay (in ms) between retries. */
   retryDelay?: TransportConfig['retryDelay'] | undefined
+  preferCurrentConnector?: boolean
 }
 
 export type ConnectorTransport = Transport
@@ -32,14 +33,28 @@ export function unstable_connector(
   config: ConnectorTransportConfig = {},
 ): Transport {
   const { type } = connector
-  const { key = 'connector', name = 'Connector', retryDelay } = config
+  const {
+    key = 'connector',
+    name = 'Connector',
+    retryDelay,
+    preferCurrentConnector = true,
+  } = config
 
   return (parameters) => {
-    const { chain, connectors } = parameters
+    const { chain, connectors, store } = parameters
     const retryCount = config.retryCount ?? parameters.retryCount
 
     const request: EIP1193RequestFn = async ({ method, params }) => {
-      const connector = connectors?.getState().find((c) => c.type === type)
+      let connector: Connector | undefined
+
+      const storeState = store?.getState()
+
+      if (preferCurrentConnector && storeState?.current) {
+        connector = storeState.connections.get(storeState.current)?.connector
+      }
+
+      connector =
+        connector ?? connectors?.getState().find((c) => c.type === type)
       if (!connector)
         throw new ProviderDisconnectedError(
           new Error(
