@@ -1,7 +1,7 @@
 import { del, get, set } from 'idb-keyval'
-import { http, createConfig } from 'wagmi'
-import { celo, mainnet, optimism, sepolia } from 'wagmi/chains'
-import { coinbaseWallet, metaMask, walletConnect } from 'wagmi/connectors'
+import { http, createConfig, fallback, unstable_connector } from 'wagmi'
+import { celo, mainnet, optimism, ronin, saigon, sepolia } from 'wagmi/chains'
+import { coinbaseWallet, injected, walletConnect } from 'wagmi/connectors'
 
 // biome-ignore lint/correctness/noUnusedVariables: <explanation>
 const indexedDBStorage = {
@@ -17,19 +17,21 @@ const indexedDBStorage = {
 }
 
 export const config = createConfig({
-  chains: [mainnet, sepolia, optimism, celo],
+  chains: [mainnet, sepolia, optimism, celo, saigon, ronin],
   connectors: [
     walletConnect({
       projectId: import.meta.env.VITE_WC_PROJECT_ID,
     }),
-    coinbaseWallet(),
-    metaMask(),
+    coinbaseWallet({ appName: 'Vite React Playground', darkMode: true }),
   ],
   transports: {
     [mainnet.id]: http(),
     [sepolia.id]: http(),
     [optimism.id]: http(),
     [celo.id]: http(),
+    [ronin.id]: unstable_connector(injected, { retryDelay: 1000 }),
+    // [saigon.id]: unstable_connector(injected, { retryDelay: 1000 }),
+    [saigon.id]: fallback([unstable_connector(injected)]),
   },
 })
 

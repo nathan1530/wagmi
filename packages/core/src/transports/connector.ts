@@ -86,6 +86,10 @@ export function unstable_connector(
           ),
         )
 
+      if (!params) {
+        params = []
+      }
+
       const body = { method, params } as EIP1193Parameters<WalletRpcSchema>
       return provider.request(body)
     }
