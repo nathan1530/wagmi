@@ -387,7 +387,7 @@ export function injected(parameters: InjectedParameters = {}) {
         // immediately resolve a JSON-RPC request on page load.
         const accounts = await withRetry(() =>
           withTimeout(() => this.getAccounts(), {
-            timeout: 100,
+            timeout: 1000,
           }),
         )
         return !!accounts.length
