@@ -75,7 +75,7 @@ export function unstable_connector(
       const chainId = hexToNumber(
         await withRetry(() =>
           withTimeout(() => provider.request({ method: 'eth_chainId' }), {
-            timeout: 1000,
+            timeout: 5000,
           }),
         ),
       )
