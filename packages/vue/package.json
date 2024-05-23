@@ -1,7 +1,7 @@
 {
   "name": "@wagmi/vue",
   "description": "Vue Composables for Ethereum",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "scripts": {
     "build": "pnpm run clean && pnpm run build:esm+types",
     "build:esm+types": "tsc --project tsconfig.build.json --outDir ./dist/esm --declaration --declarationMap --declarationDir ./dist/types",
-    "clean": "rm -rf dist tsconfig.tsbuildinfo actions chains connectors nuxt query",
+    "clean": "rm -rf .DS_Store dist tsconfig.tsbuildinfo actions chains connectors nuxt query",
     "test:build": "publint --strict",
     "typecheck": "vue-tsc --noEmit"
   },

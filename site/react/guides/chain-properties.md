@@ -1,6 +1,6 @@
 # Chain Properties
 
-Some chains support additional properties related to blocks and transactions. This is powered by Viem's [formatters](https://viem.sh/docs/clients/chains.html#formatters) and [serializers](https://viem.sh/docs/clients/chains.html#serializers). For example, Celo, ZkSync, OP Stack chains support all support additional properties. In order to use these properties in a type-safe way, there are a few things you should be aware of.
+Some chains support additional properties related to blocks and transactions. This is powered by Viem's [formatters](https://viem.sh/docs/clients/chains.html#formatters) and [serializers](https://viem.sh/docs/clients/chains.html#serializers). For example, Celo, ZkSync, OP Stack chains all support additional properties. In order to use these properties in a type-safe way, there are a few things you should be aware of.
 
 <br/>
 
@@ -12,7 +12,7 @@ Make sure you follow the TypeScript guide's [Config Types](/react/typescript#con
 
 ## Narrowing Parameters
 
-Once your Config is registered with TypeScript, you are ready to access chain-specifc properties! For example, Celo's `feeCurrency`, `gatewayFee`, and `gatewayFeeRecipient` are all available.
+Once your Config is registered with TypeScript, you are ready to access chain-specifc properties! For example, Celo's `feeCurrency` is available.
 
 ::: code-group
 ```ts [index.tsx]
@@ -23,8 +23,6 @@ const result = useSimulateContract({
   to: '0xd2135CfB216b74109775236E36d4b433F1DF507B',
   value: parseEther('0.01'),
   feeCurrency: '0x…', // [!code focus]
-  gatewayFee: 100n, // [!code focus]
-  gatewayFeeRecipient: '0x…', // [!code focus]
 })
 ```
 <<< @/snippets/react/config-chain-properties.ts[config.ts]
@@ -44,10 +42,6 @@ const result = useSimulateContract({
   chainId: celo.id, // [!code focus]
   feeCurrency: '0x…', // [!code focus]
   // ^? (property) feeCurrency?: `0x${string}` | undefined // [!code focus]
-  gatewayFee: 100n,  // [!code focus]
-  // ^? (property) gatewayFee?: bigint | undefined // [!code focus]
-  gatewayFeeRecipient: '0x…', // [!code focus]
-  // ^? (property) gatewayFeeRecipient?: `0x${string}` | undefined // [!code focus]
 })
 ```
 <<< @/snippets/react/config-chain-properties.ts[config.ts]
@@ -90,7 +84,7 @@ const { data } = useWaitForTransactionReceipt({
   hash: '0x16854fcdd0219cacf5aec5e4eb2154dac9e406578a1510a6fc48bd0b67e69ea9',
 })
 
-if (result.data?.chainId === zkSync.id) {
+if (data?.chainId === zkSync.id) {
   data?.logs
   //    ^? (property) logs: ZkSyncLog[] | undefined
 }

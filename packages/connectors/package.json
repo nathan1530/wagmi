@@ -1,7 +1,7 @@
 {
   "name": "@wagmi/connectors",
   "description": "Collection of connectors for Wagmi",
-  "version": "5.0.2",
+  "version": "5.0.4",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "scripts": {
     "build": "pnpm run clean && pnpm run build:esm+types",
     "build:esm+types": "tsc --project tsconfig.build.json --outDir ./dist/esm --declaration --declarationMap --declarationDir ./dist/types",
-    "clean": "rm -rf dist tsconfig.tsbuildinfo",
+    "clean": "rm -rf .DS_Store dist tsconfig.tsbuildinfo",
     "test:build": "publint --strict",
     "typecheck": "tsc --noEmit"
   },
@@ -45,7 +45,7 @@
     }
   },
   "dependencies": {
-    "@coinbase/wallet-sdk": "4.0.0",
+    "@coinbase/wallet-sdk": "4.0.2",
     "@metamask/sdk": "0.20.3",
     "@safe-global/safe-apps-provider": "0.18.1",
     "@safe-global/safe-apps-sdk": "8.1.0",

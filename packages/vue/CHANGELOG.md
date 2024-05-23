@@ -1,5 +1,26 @@
 # @wagmi/vue
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`be9e1b8a9818b92eb0654a20d9471e9e39329e7e`](https://github.com/wevm/wagmi/commit/be9e1b8a9818b92eb0654a20d9471e9e39329e7e)]:
+  - @wagmi/connectors@5.0.4
+
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`2804a8a583b1874271154898b4bae38756ef581c`](https://github.com/wevm/wagmi/commit/2804a8a583b1874271154898b4bae38756ef581c), [`2804a8a583b1874271154898b4bae38756ef581c`](https://github.com/wevm/wagmi/commit/2804a8a583b1874271154898b4bae38756ef581c)]:
+  - @wagmi/connectors@5.0.3
+  - @wagmi/core@2.10.3
+
+## 0.0.6
+
+### Patch Changes
+
+- [`ec2f63f106fd468f28b43d3b88ab3e89aaf5e81a`](https://github.com/wevm/wagmi/commit/ec2f63f106fd468f28b43d3b88ab3e89aaf5e81a) Thanks [@tmm](https://github.com/tmm)! - Fixed `useSwitchChain` `chains` typing.
+
 ## 0.0.5
 
 ### Patch Changes
